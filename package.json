@@ -1,0 +1,17 @@
+{
+  "name": "salesforce-t3-code",
+  "private": true,
+  "packageManager": "pnpm@10",
+  "scripts": {
+    "dev": "turbo run dev --parallel --filter=@salesforce-agent/renderer --filter=@salesforce-agent/desktop",
+    "build": "pnpm --filter @salesforce-agent/shared build && pnpm --filter @salesforce-agent/salesforce-core build && pnpm --filter @salesforce-agent/agent-service build && pnpm --filter @salesforce-agent/renderer build && pnpm --filter @salesforce-agent/desktop build",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write .",
+    "clean": "rm -rf .turbo node_modules apps/*/dist packages/*/dist"
+  },
+  "devDependencies": {
+    "prettier": "latest",
+    "turbo": "latest",
+    "typescript": "latest"
+  }
+}
