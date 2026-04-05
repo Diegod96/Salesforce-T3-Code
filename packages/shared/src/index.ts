@@ -21,6 +21,12 @@ export type ListAuthorizedOrgsResult =
   | { ok: true; orgs: OrgSummary[] }
   | { ok: false; error: string };
 
+export type WorkspaceState = {
+  projectPath: string | null;
+  projectName: string | null;
+  defaultOrgAlias: string | null;
+};
+
 export const AgentPlanStepSchema = z.object({
   id: z.string(),
   description: z.string(),
@@ -29,6 +35,11 @@ export const AgentPlanStepSchema = z.object({
 });
 
 export type AgentPlanStep = z.infer<typeof AgentPlanStepSchema>;
+
+export type PlanDraftPayload = {
+  summary: string;
+  steps: AgentPlanStep[];
+};
 
 export const AgentTaskSchema = z.object({
   id: z.string(),

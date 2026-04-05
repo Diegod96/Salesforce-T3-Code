@@ -184,3 +184,134 @@ code.path {
   background: #2a4980;
   color: #dbe8ff;
 }
+
+.pill-app {
+  background: #2d6b4e;
+  color: #d8f5e4;
+}
+
+.btn-small {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.55rem;
+  margin-left: auto;
+}
+
+.btn-inline {
+  margin-left: 0.5rem;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.context-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  margin: 0.75rem 0 1rem;
+  font-size: 0.9rem;
+}
+
+.path-inline {
+  font-size: 0.85rem;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.88rem;
+  margin-bottom: 0.35rem;
+  color: #b8c3d9;
+}
+
+.field-textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #354868;
+  background: #0c1118;
+  color: #e8ecf4;
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.field-textarea:focus {
+  outline: 2px solid #3d6cbd;
+  outline-offset: 1px;
+}
+
+.plan-panel {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #243049;
+}
+
+.plan-heading {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+}
+
+.plan-summary {
+  margin: 0 0 1rem;
+  color: #c8d2e5;
+}
+
+.plan-steps {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.plan-step {
+  margin-bottom: 0.85rem;
+}
+
+.plan-step-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.plan-step-desc {
+  margin: 0;
+  color: #b8c3d9;
+  font-size: 0.95rem;
+}
+
+.kind {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  background: #243049;
+  color: #9db0d0;
+}
+
+.kind-read {
+  background: #2a3548;
+}
+
+.kind-edit {
+  background: #4a3d28;
+  color: #f0e0c8;
+}
+
+.kind-cli {
+  background: #2d4a50;
+  color: #d0eef4;
+}
+
+.kind-git {
+  background: #3d2d4a;
+  color: #ead8ff;
+}
+
+.plan-row {
+  margin-top: 1rem;
+}
+
+.callout.ok {
+  background: #15261f;
+  border: 1px solid #2d5c45;
+  color: #c8ead9;
+}

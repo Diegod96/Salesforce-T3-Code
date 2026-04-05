@@ -1,4 +1,10 @@
 import { app, BrowserWindow, dialog, ipcMain, shell } from "electron";
+import {
+  getWorkspaceState,
+  openWorkspaceDb,
+  setWorkspaceDefaultOrgAlias,
+  setWorkspaceProject,
+} from "@salesforce-agent/persistence-sqlite";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -43,6 +49,25 @@ async function validateSfdxProjectRoot(dir: string): Promise<
 }
 
 function registerIpc(): void {
+  ipcMain.handle("t3:getWorkspaceState", () => {
+    return getWorkspaceState();
+  });
+
+  ipcMain.handle("t3:setDefaultOrgAlias", (_e, alias: unknown) => {
+    if (alias !== null && typeof alias !== "string") {
+      return { ok: false as const, error: "Invalid org alias." };
+    }
+    const trimmed = alias === null || alias === "" ? null : alias.trim();
+    setWorkspaceDefaultOrgAlias(trimmed);
+    return { ok: true as const };
+  });
+
+  ipcMain.handle("t3:draftPlan", async (_e, prompt: unknown) => {
+    const text = typeof prompt === "string" ? prompt : "";
+    const { draftStubPlan } = await import("@salesforce-agent/agent-service");
+    return draftStubPlan(text);
+  });
+
   ipcMain.handle("t3:openProject", async () => {
     const focused = BrowserWindow.getFocusedWindow();
     const options: Electron.OpenDialogOptions = {
@@ -69,6 +94,7 @@ function registerIpc(): void {
         code: "invalid" as const,
       };
     }
+    setWorkspaceProject(dir, check.name ?? null);
     return { ok: true as const, path: dir, name: check.name };
   });
 
@@ -116,9 +142,9 @@ function createWindow(): void {
   }
 }
 
-registerIpc();
-
 void app.whenReady().then(() => {
+  openWorkspaceDb(app.getPath("userData"));
+  registerIpc();
   createWindow();
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {

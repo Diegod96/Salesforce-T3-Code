@@ -9,6 +9,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@salesforce-agent/agent-service": "workspace:*",
+    "@salesforce-agent/persistence-sqlite": "workspace:*",
     "@salesforce-agent/salesforce-core": "workspace:*",
     "@salesforce-agent/shared": "workspace:*"
   },

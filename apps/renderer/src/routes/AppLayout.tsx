@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { WorkspaceHydrator } from "../workspace/WorkspaceHydrator";
 
 const navClass = ({ isActive }: { isActive: boolean }) =>
   isActive ? "nav-link active" : "nav-link";
@@ -6,6 +7,7 @@ const navClass = ({ isActive }: { isActive: boolean }) =>
 export function AppLayout() {
   return (
     <div className="app-shell">
+      <WorkspaceHydrator />
       <header className="app-header">
         <div className="brand">Salesforce T3 Code</div>
         <nav className="nav">

@@ -1,9 +1,17 @@
+export type { WorkspaceState } from "@salesforce-agent/shared";
+export {
+  getWorkspaceState,
+  openWorkspaceDb,
+  setWorkspaceDefaultOrgAlias,
+  setWorkspaceProject,
+} from "./workspace-db.js";
+
 export interface KeyValueStore {
   get(key: string): Promise<string | undefined>;
   set(key: string, value: string): Promise<void>;
 }
 
-/** In-memory store until SQLite is wired (see plan.md persistence). */
+/** In-memory store for tests or fallbacks. */
 export function createMemoryStore(): KeyValueStore {
   const map = new Map<string, string>();
   return {

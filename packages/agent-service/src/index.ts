@@ -1,11 +1,8 @@
-import type { AgentPlanStep } from "@salesforce-agent/shared";
+import type { PlanDraftPayload } from "@salesforce-agent/shared";
 
-export type PlanDraft = {
-  summary: string;
-  steps: AgentPlanStep[];
-};
+export type PlanDraft = PlanDraftPayload;
 
-export function draftStubPlan(prompt: string): PlanDraft {
+export function draftStubPlan(prompt: string): PlanDraftPayload {
   return {
     summary: `Review and approve steps for: ${prompt.slice(0, 200)}`,
     steps: [

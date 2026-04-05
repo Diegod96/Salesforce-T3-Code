@@ -1,12 +1,15 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { getDesktopApi } from "../../api/desktop";
-import { useProjectStore } from "../../stores/projectStore";
+import { useWorkspaceStore } from "../../stores/workspaceStore";
+import { workspaceQueryKey } from "../../workspace/WorkspaceHydrator";
 
 export function ProjectsPage() {
-  const { path, name, setProject } = useProjectStore();
+  const { projectPath, projectName, setProject } = useWorkspaceStore();
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const api = getDesktopApi();
+  const queryClient = useQueryClient();
 
   async function onOpen() {
     setError(null);
@@ -26,6 +29,7 @@ export function ProjectsPage() {
         return;
       }
       setProject(res.path, res.name ?? null);
+      await queryClient.invalidateQueries({ queryKey: workspaceQueryKey });
     } finally {
       setBusy(false);
     }
@@ -36,6 +40,7 @@ export function ProjectsPage() {
       <h1>Projects</h1>
       <p className="muted">
         Open a Salesforce DX folder (must contain a valid sfdx-project.json).
+        The choice is saved locally for the next launch.
       </p>
       {!api && (
         <p className="callout warn">
@@ -53,17 +58,17 @@ export function ProjectsPage() {
           {busy ? "Opening…" : "Open project…"}
         </button>
       </div>
-      {(path || name) && (
+      {(projectPath || projectName) && (
         <div className="project-summary">
-          {name && (
+          {projectName && (
             <div>
-              <span className="label">Name</span> {name}
+              <span className="label">Name</span> {projectName}
             </div>
           )}
-          {path && (
+          {projectPath && (
             <div>
               <span className="label">Path</span>{" "}
-              <code className="path">{path}</code>
+              <code className="path">{projectPath}</code>
             </div>
           )}
         </div>
