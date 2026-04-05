@@ -28,7 +28,7 @@ pnpm install
 pnpm dev
 ```
 
-`pnpm dev` starts the Vite renderer on port 5173 and launches Electron against that dev server.
+`pnpm dev` picks the first free port starting at **5173** (or uses **`VITE_DEV_PORT`** if you set it), starts Vite on that port, and launches Electron against the same URL. If something else is already bound to 5173, the next free port is used automatically.
 
 ## Branching (GitFlow)
 

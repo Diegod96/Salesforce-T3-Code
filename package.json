@@ -6,7 +6,7 @@
     "onlyBuiltDependencies": ["electron", "esbuild"]
   },
   "scripts": {
-    "dev": "turbo run dev --filter=@salesforce-agent/renderer --filter=@salesforce-agent/desktop",
+    "dev": "node scripts/run-dev.mjs",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "format": "prettier --write .",
