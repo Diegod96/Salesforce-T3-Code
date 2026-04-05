@@ -9,6 +9,18 @@ export const OrgSummarySchema = z.object({
 
 export type OrgSummary = z.infer<typeof OrgSummarySchema>;
 
+export type OpenProjectResult =
+  | { ok: true; path: string; name?: string }
+  | {
+      ok: false;
+      error: string;
+      code?: "canceled" | "invalid";
+    };
+
+export type ListAuthorizedOrgsResult =
+  | { ok: true; orgs: OrgSummary[] }
+  | { ok: false; error: string };
+
 export const AgentPlanStepSchema = z.object({
   id: z.string(),
   description: z.string(),

@@ -8,7 +8,10 @@
     "dev": "tsc -p tsconfig.json && sh -c 'P=\"${VITE_DEV_PORT:-5173}\"; pnpm exec wait-on \"tcp:127.0.0.1:$P\" && exec env VITE_DEV_SERVER_URL=\"http://127.0.0.1:$P\" pnpm exec electron .'",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@salesforce-agent/salesforce-core": "workspace:*",
+    "@salesforce-agent/shared": "workspace:*"
+  },
   "devDependencies": {
     "@types/node": "^22.10.0",
     "electron": "^34.0.0",

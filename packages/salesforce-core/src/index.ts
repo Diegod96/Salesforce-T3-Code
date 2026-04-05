@@ -1,13 +1,11 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import type { OrgSummary } from "@salesforce-agent/shared";
+import type { ListAuthorizedOrgsResult, OrgSummary } from "@salesforce-agent/shared";
 import { OrgSummarySchema } from "@salesforce-agent/shared";
 
 const execFileAsync = promisify(execFile);
 
-export type ListOrgsResult =
-  | { ok: true; orgs: OrgSummary[] }
-  | { ok: false; error: string };
+export type ListOrgsResult = ListAuthorizedOrgsResult;
 
 function parseOrgListJson(raw: string): OrgSummary[] {
   const data = JSON.parse(raw) as { result?: unknown[] };
@@ -31,7 +29,7 @@ function parseOrgListJson(raw: string): OrgSummary[] {
     .map((r) => r.data);
 }
 
-export async function listAuthorizedOrgs(): Promise<ListOrgsResult> {
+export async function listAuthorizedOrgs(): Promise<ListAuthorizedOrgsResult> {
   try {
     const { stdout } = await execFileAsync(
       "sf",
