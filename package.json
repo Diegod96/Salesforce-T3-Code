@@ -2,14 +2,18 @@
   "name": "salesforce-t3-code",
   "private": true,
   "packageManager": "pnpm@10.33.0",
+  "pnpm": {
+    "onlyBuiltDependencies": ["electron", "esbuild"]
+  },
   "scripts": {
-    "dev": "turbo run dev --parallel --filter=@salesforce-agent/renderer --filter=@salesforce-agent/desktop",
-    "build": "pnpm --filter @salesforce-agent/shared build && pnpm --filter @salesforce-agent/salesforce-core build && pnpm --filter @salesforce-agent/agent-service build && pnpm --filter @salesforce-agent/renderer build && pnpm --filter @salesforce-agent/desktop build",
+    "dev": "turbo run dev --filter=@salesforce-agent/renderer --filter=@salesforce-agent/desktop",
+    "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "format": "prettier --write .",
     "clean": "rm -rf .turbo node_modules apps/*/dist packages/*/dist"
   },
   "devDependencies": {
+    "@types/node": "^22.10.0",
     "prettier": "latest",
     "turbo": "latest",
     "typescript": "latest"
