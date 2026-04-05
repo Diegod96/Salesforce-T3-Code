@@ -1,5 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalPassThroughEnv": ["VITE_DEV_PORT"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

@@ -26,3 +26,10 @@ A local-first Electron desktop app scaffold for Salesforce development.
 cp .env.example .env
 pnpm install
 pnpm dev
+```
+
+`pnpm dev` picks the first free port starting at **5173** (or uses **`VITE_DEV_PORT`** if you set it), starts Vite on that port, and launches Electron against the same URL. If something else is already bound to 5173, the next free port is used automatically.
+
+## Branching (GitFlow)
+
+See [docs/gitflow.md](docs/gitflow.md) for branch roles (`main`, `develop`, `feature/*`, `release/*`, `hotfix/*`).
