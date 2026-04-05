@@ -4,7 +4,7 @@ export {
   openWorkspaceDb,
   setWorkspaceDefaultOrgAlias,
   setWorkspaceProject,
-} from "./workspace-db.js";
+} from "./workspace-db";
 
 export interface KeyValueStore {
   get(key: string): Promise<string | undefined>;
